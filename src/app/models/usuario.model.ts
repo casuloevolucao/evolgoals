@@ -1,4 +1,9 @@
 export class Usuario {
+    
+    constructor(init?: Partial<Usuario>) {
+        Object.assign(this, init);
+    }
+
     email:string
     senha:string
     foto: File | string

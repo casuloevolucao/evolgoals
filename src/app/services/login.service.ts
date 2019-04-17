@@ -46,34 +46,43 @@ export class LoginService {
     return this.afa.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((user)=>{
      this.af.collection('usuarios').doc(user.user.uid).set({
         uid: user.user.uid,
-        foto: '',
+        foto: "",
         email: usuario.email,
         nome: usuario.nome,
+        tipoUsuario: 1,
+        whatsapp: "",
+        facebook: "",
+        instagram: "",
+        descricao: "",
         dtCadastro: new Date(),
      })
    })
   }   
 
   //metodo que edita usuario
-  async editUser(usuario:Usuario, antigoUser:Usuario){
+  async editUser(usuario:Usuario, senha:string){
     return new Promise((resolve, reject)=>{
       this.afa.authState.subscribe((user)=>{
-        user.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(user.email, antigoUser.senha))
-          .then(()=>{
-            user.updateEmail(usuario.email)
-              .then(()=>{
-                user.updatePassword(usuario.senha)
-                this.af.collection("usuarios").doc(user.uid).update({
-                  foto: '',
-                  email: usuario.email,
-                  nome: usuario.nome,
+        user.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(user.email, senha))
+        .then(()=>{
+          user.updateEmail(usuario.email)
+            .then(()=>{
+              user.updatePassword(usuario.senha)
+              this.afs.ref(`users/${user.uid}`).put(usuario.foto).then((foto)=>{
+                foto.ref.getDownloadURL().then((fotoUrl)=>{
+                  this.af.collection("usuarios").doc(user.uid).update({
+                    foto: fotoUrl,
+                    email: usuario.email,
+                    nome: usuario.nome,
+                  })
+                  resolve(user)
                 })
-                resolve(user)
               })
-          })
-          .catch((e)=>{
-            reject(e)
-          })
+            })
+        })
+        .catch((e)=>{
+          reject(e)
+        })
       })
     })
   }
