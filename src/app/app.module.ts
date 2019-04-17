@@ -29,9 +29,9 @@ import { FooterComponent } from './home/footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { TopomenuComponent } from './admin/topomenu/topomenu.component';
 import { SidemenuComponent } from './admin/sidemenu/sidemenu.component';
-
-
-
+import { LoginComponent } from './acesso/login/login.component';
+import { CadastroComponent } from './acesso/cadastro/cadastro.component';
+import { ResetComponent } from './acesso/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,10 @@ import { SidemenuComponent } from './admin/sidemenu/sidemenu.component';
     FooterComponent,
     AdminComponent,
     TopomenuComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    LoginComponent,
+    CadastroComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
