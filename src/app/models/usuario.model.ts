@@ -16,4 +16,5 @@ export class Usuario {
     facebook:string
     instagram:string
     descricao:string
+    respondido:boolean
 }

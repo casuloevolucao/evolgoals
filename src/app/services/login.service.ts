@@ -54,6 +54,7 @@ export class LoginService {
         facebook: "",
         instagram: "",
         descricao: "",
+        respondido: false,
         dtCadastro: new Date(),
      })
    })
