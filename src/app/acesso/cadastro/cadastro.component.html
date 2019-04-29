@@ -1,0 +1,72 @@
+<div class="pg-login">
+  <div class="container">
+    <div class="row justify-content-center" style="margin-top:5vh;">
+      <div class="form-custom col-md-5 p-5 bg-white shadow">
+        <!-- Form -->
+        <form [formGroup]="form" (ngSubmit)="submit()">	
+          <div class="mb-4 text-center">
+            <h6>Registre uma nova associação</h6>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="nome" class="form-control" placeholder="Nome completo">
+            <i class="fa fa-user icon-custom"></i>
+            <div *ngIf="form.get('nome').invalid && (form.get('nome').touched || form.get('senha').dirty)" class="alert alert-danger">
+              <div *ngIf="form.get('nome').hasError('required')">
+                O Campo e requirido
+              </div>
+              
+          </div>			
+            
+            <input type="text" formControlName="email" class="form-control" placeholder="E-mail">
+            <i class="fa fa-envelope-o icon-custom"></i>
+            <div *ngIf="form.get('email').invalid && (form.get('email').touched || form.get('email').dirty)" class="alert alert-danger">
+              <div *ngIf="form.get('email').hasError('required')">
+                O Campo e requirido
+              </div>
+              <div *ngIf="form.get('email').hasError('email')">
+                O email esta mal formatado
+              </div>
+          </div>				
+            
+            <input type="password" formControlName="senha" class="form-control" placeholder="Senha">
+            <i class="fa fa-lock icon-custom"></i>
+            <div *ngIf="form.get('senha').invalid && (form.get('senha').touched || form.get('senha').dirty)" class="alert alert-danger">
+              <div *ngIf="form.get('senha').hasError('required')">
+                O Campo e requirido
+              </div>
+              <div *ngIf="form.get('senha').hasError('minlength')">
+                A senha esta fraca.
+              </div>
+          </div>			
+            
+            <div class="text-right">
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary col-md-4 text-center">
+                Cadastrar
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <h3>- OU -</h3>
+          </div>
+        </form>
+
+        <!-- Buttons -->
+        <div class="form-group">
+          <button (click)="facebook()" class="btn btn-primary w-100 text-left">
+            <i class="fa fa-facebook-square pr-3"></i> Login Facebook
+          </button>
+
+          <button class="btn btn-danger w-100 mt-1 text-left">
+            <i class="fa fa-google pr-3"></i> Login G-mail
+          </button>
+        </div>
+
+        <div (click)="google()" class="form-group mt-1">
+          <h6><a routerLink="/login">Lembrou? Faça seu login</a></h6>
+          <h6><a routerLink="/resetsenha">Esqueceu a senha?</a></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
