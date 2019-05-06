@@ -1,3 +1,12 @@
-<p>
-  admin works!
-</p>
+<div class="bg-admin">
+  <app-topomenu></app-topomenu>
+  <div id="wrapper">
+    <app-sidemenu [usuario]="usuario"></app-sidemenu>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid xyz">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
