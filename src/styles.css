@@ -1,0 +1,49 @@
+.pg-login
+{
+    background-image: url('./assets/imgs/bg-login.jpg');
+    background-repeat: no-repeat;
+    background-size:100%;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    padding: 3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-size: cover;
+}
+
+::-webkit-scrollbar {
+    width:2px;
+    height:10px;
+}
+::-webkit-scrollbar-thumb:vertical {
+    background:#000000;
+} 
+::-webkit-scrollbar-thumb:horizontal {
+    background:#000000;
+
+}
+
+.input-custom
+{
+    border: 1px solid #00a0c4;
+    border-radius: 4px;
+    padding:10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-custom
+{
+    border-radius: 20px;
+}
+
+.icon-custom
+{  
+  position: relative !important;
+  left: 90% !important;
+  top: -2em !important;
+}
+
