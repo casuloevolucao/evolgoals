@@ -1,3 +1,23 @@
-<p>
-  sidemenu works!
-</p>
+ <!-- Sidebar -->
+ <div id="sidebar-wrapper">
+  <ul class="sidebar-nav nav flex-column" id="menu">
+     <li>
+        <img class="img-fluid user-img" [src]="usuario.foto">
+        <p class="lead text-center text-white">{{usuario.nome}}</p>
+     </li>
+     <li class="nav-item">
+        <a routerLink="/admin"><span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x "></i></span> Inicio</a>
+     </li>
+     <li routerLinkActive="active" class="nav-item">
+        <a routerLink="/admin/perfil"><span class="fa-stack fa-lg"><i class="fa fa-user-o fa-stack-1x "></i></span>Perfil</a>
+     </li>
+     <li class="nav-item">
+        <a href="#"><span class="fa-stack fa-lg"><i class="fa fa-info fa-stack-1x "></i></span>Termos de Uso</a>
+     </li>
+     <li class="nav-item">
+        <a href="#"><span class="fa-stack fa-lg"><i class="fa fa-sign-out fa-stack-1x "></i></span>Sair</a>
+     </li>
+  </ul>
+  <p class="lead text-center text-white footer">Casulo Evolução &copy; 2019</p>
+</div>
+<!-- /#sidebar-wrapper -->

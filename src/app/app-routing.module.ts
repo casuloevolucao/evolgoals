@@ -10,6 +10,8 @@ import { AuthGuardService } from './services/authguard.service';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ResetComponent } from './acesso/reset/reset.component';
+import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
+import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -17,7 +19,8 @@ const routes: Routes = [
   {path: "cadastro", component: CadastroComponent},
   {path: "resetsenha", component: ResetComponent},
   {path: "admin", component: AdminComponent, canActivate:[AuthGuardService], children: [
-    
+    {path: "", component:HomeadminComponent},
+    {path: "perfil", component:EditaradminComponent}
   ]}
 ];
 

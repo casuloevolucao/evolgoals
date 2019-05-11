@@ -1,0 +1,65 @@
+<!--Card - infor-->
+<div class="row justify-content-center">
+  <div class="col-md-12">
+      <div class="card bg-white shadow">
+          <form [formGroup]="form">
+            <div class="text-center">
+                <img class="img-fluid user-perfil" [src]="usuario.foto">
+                <p class="lead">Editar Perfil <i class="fa fa-edit"></i></p>
+            </div>
+            <div class="form-group input-group">
+                <input formControlName="foto" type="file" class="form-control py-2 border-right-0 border">
+                <span class="input-group-append">
+                  <div class="input-group-text bg-transparent"><i class="fa fa-image"></i></div>
+                </span>		
+            </div>
+            <div *ngIf="form.get('foto').invalid && (form.get('foto').touched || form.get('foto').dirty)" class="alert alert-danger">
+                <div *ngIf="form.get('foto').hasError('required')">
+                  O Campo e requirido
+                </div>
+            </div>	
+            <div class="form-group input-group">
+                <input formControlName="nome" type="text" placeholder="Nome Completo" class="form-control py-2 border-right-0 border">
+                <span class="input-group-append">
+                  <div class="input-group-text bg-transparent"><i class="fa fa-user-o"></i></div>
+                </span>
+            </div>
+            <div *ngIf="form.get('nome').invalid && (form.get('nome').touched || form.get('nome').dirty)" class="alert alert-danger">
+                <div *ngIf="form.get('email').hasError('required')">
+                  O Campo e requirido
+                </div>
+            </div>	
+            <div class="form-group input-group">
+                <input formControlName="email" type="text" placeholder="Email" class="form-control py-2 border-right-0 border">
+                <span class="input-group-append">
+                  <div class="input-group-text bg-transparent"><i class="fa fa-envelope-o"></i></div>
+                </span>
+            </div>
+            <div *ngIf="form.get('email').invalid && (form.get('email').touched || form.get('email').dirty)" class="alert alert-danger">
+                <div *ngIf="form.get('email').hasError('required')">
+                  O Campo e requirido
+                </div>
+                <div *ngIf="form.get('email').hasError('email')">
+                  O email esta mal formatado
+                </div>
+            </div>	
+            <div class="form-group input-group">
+                <input formControlName="senha" type="password" placeholder="Senha" class="form-control py-2 border-right-0 border">
+                <span class="input-group-append">
+                  <div class="input-group-text bg-transparent"><i class="fa fa-lock"></i></div>
+                </span>	
+            </div>
+            <div *ngIf="form.get('senha').invalid && (form.get('senha').touched || form.get('senha').dirty)" class="alert alert-danger">
+                <div *ngIf="form.get('senha').hasError('required')">
+                  O Campo e requirido
+                </div>
+                <div *ngIf="form.get('senha').hasError('minlength')">
+                  A senha esta fraca.
+                </div>
+            </div>
+            <button class="btn btn-success float-right" [disabled]="!form.valid">Salvar Alterações</button>
+          </form>
+      </div>
+  </div>
+</div>
+<!-- end - Card-->
