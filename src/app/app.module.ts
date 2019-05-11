@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { ReactiveFormsModule } from "@angular/forms";
+import {NgxMaskModule} from 'ngx-mask'
 
 //Services
 import { HomeService } from './services/home.service';
@@ -20,6 +21,8 @@ import { AuthGuardService } from './services/authguard.service';
 
 //ngx-bootstrap
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 //Componet
 import { AppComponent } from './app.component';
@@ -34,6 +37,11 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ResetComponent } from './acesso/reset/reset.component';
 import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
 import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
+import { RespostaService } from './services/resposta.service';
+import { ListaComponent } from './lista/lista.component';
+import { TabperfilComponent } from './admin/views/homeadmin/tabperfil/tabperfil.component';
+import { TabgostaComponent } from './admin/views/homeadmin/tabgosta/tabgosta.component';
+import { TabhabilidadeComponent } from './admin/views/homeadmin/tabhabilidade/tabhabilidade.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,11 @@ import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.comp
     CadastroComponent,
     ResetComponent,
     HomeadminComponent,
-    EditaradminComponent
+    EditaradminComponent,
+    ListaComponent,
+    TabperfilComponent,
+    TabgostaComponent,
+    TabhabilidadeComponent
   ],
   imports: [
     BrowserModule,
@@ -62,12 +74,16 @@ import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.comp
     AngularFirestoreModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [
     HomeService,
     LoginService,
-    AuthGuardService
+    AuthGuardService,
+    RespostaService
   ],
   bootstrap: [AppComponent]
 })

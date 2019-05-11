@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     })
     .catch((e)=>{
       this.spinnerS.hide()
-      this.toast.error(e)
+      this.toast.error(this.loginS.erroTratament(e).message)
     })
   }
 
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     })
     .catch((e)=>{
       this.spinnerS.hide()
-      this.toast.error(e)
+      this.toast.error(this.loginS.erroTratament(e).message)
     })
   }
 
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
     })
     .catch((e)=>{
       this.spinnerS.hide()
-      this.toast.error(e)
+      this.toast.error(this.loginS.erroTratament(e).message)
     })
   }
 }

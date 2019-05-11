@@ -12,6 +12,7 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ResetComponent } from './acesso/reset/reset.component';
 import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
 import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
+import { ListaComponent } from './lista/lista.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: "admin", component: AdminComponent, canActivate:[AuthGuardService], children: [
     {path: "", component:HomeadminComponent},
     {path: "perfil", component:EditaradminComponent}
-  ]}
+  ]},
+  {path:"lista", component:ListaComponent, canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

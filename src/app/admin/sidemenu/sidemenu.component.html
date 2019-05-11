@@ -2,7 +2,7 @@
  <div id="sidebar-wrapper">
   <ul class="sidebar-nav nav flex-column" id="menu">
      <li>
-        <img class="img-fluid user-img" [src]="usuario.foto">
+        <img class="img-fluid user-img" [src]="usuario.foto != null ? usuario.foto :'./assets/imgs/user.png'">
         <p class="lead text-center text-white">{{usuario.nome}}</p>
      </li>
      <li class="nav-item">
@@ -12,12 +12,24 @@
         <a routerLink="/admin/perfil"><span class="fa-stack fa-lg"><i class="fa fa-user-o fa-stack-1x "></i></span>Perfil</a>
      </li>
      <li class="nav-item">
-        <a href="#"><span class="fa-stack fa-lg"><i class="fa fa-info fa-stack-1x "></i></span>Termos de Uso</a>
+        <a (click)="openModal(termos)" style="cursor: pointer; color: #999999;"><span class="fa-stack fa-lg"><i class="fa fa-info fa-stack-1x "></i></span>Termos de Uso</a>
      </li>
      <li class="nav-item">
-        <a href="#"><span class="fa-stack fa-lg"><i class="fa fa-sign-out fa-stack-1x "></i></span>Sair</a>
+        <a (click)="logout()" style="cursor: pointer; color: #999999;"><span class="fa-stack fa-lg"><i class="fa fa-sign-out fa-stack-1x "></i></span>Sair</a>
      </li>
   </ul>
   <p class="lead text-center text-white footer">Casulo Evolução &copy; 2019</p>
 </div>
 <!-- /#sidebar-wrapper -->
+
+<ng-template #termos>
+   <div class="modal-header">
+     <h4 class="modal-title pull-left">Termos de Uso</h4>
+     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body">
+     This is a modal.
+   </div>
+</ng-template>

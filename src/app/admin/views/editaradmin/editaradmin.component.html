@@ -4,11 +4,11 @@
       <div class="card bg-white shadow">
           <form [formGroup]="form">
             <div class="text-center">
-                <img class="img-fluid user-perfil" [src]="usuario.foto">
+                <img class="img-fluid user-perfil" [src]="usuario.foto != null ? usuario.foto :'./assets/imgs/user.png'">
                 <p class="lead">Editar Perfil <i class="fa fa-edit"></i></p>
             </div>
             <div class="form-group input-group">
-                <input formControlName="foto" type="file" class="form-control py-2 border-right-0 border">
+                <input (change)="capturarImg($event)" formControlName="foto" type="file" class="form-control py-2 border-right-0 border">
                 <span class="input-group-append">
                   <div class="input-group-text bg-transparent"><i class="fa fa-image"></i></div>
                 </span>		
@@ -44,7 +44,7 @@
                 </div>
             </div>	
             <div class="form-group input-group">
-                <input formControlName="senha" type="password" placeholder="Senha" class="form-control py-2 border-right-0 border">
+                <input formControlName="senha" type="password" placeholder="Nova Senha" class="form-control py-2 border-right-0 border">
                 <span class="input-group-append">
                   <div class="input-group-text bg-transparent"><i class="fa fa-lock"></i></div>
                 </span>	
@@ -57,9 +57,42 @@
                   A senha esta fraca.
                 </div>
             </div>
-            <button class="btn btn-success float-right" [disabled]="!form.valid">Salvar Alterações</button>
+            <button type="button" (click)="openModal(confirm)" class="btn btn-success float-right" [disabled]="!form.valid">Salvar Alterações</button>
           </form>
       </div>
   </div>
 </div>
 <!-- end - Card-->
+<ng-template #confirm>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cofirme seu usuario</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <form [formGroup]="formConfirm" (ngSubmit)="submit()">
+    <div class="text-center">
+        <p class="lead">Por motivos de segurança por favor coloque sua senha Atual</p>
+    </div>
+    <div class="form-group input-group">
+        <input formControlName="senha" type="password" placeholder="Senha" class="form-control py-2 border-right-0 border">
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent"><i class="fa fa-lock"></i></div>
+        </span>	
+    </div>
+    <div *ngIf="formConfirm.get('senha').invalid && (formConfirm.get('senha').touched || formConfirm.get('senha').dirty)" class="alert alert-danger">
+        <div *ngIf="formConfirm.get('senha').hasError('required')">
+          O Campo e requirido
+        </div>
+        <div *ngIf="formConfirm.get('senha').hasError('minlength')">
+          A senha esta fraca.
+        </div>
+    </div>
+    <div class="form-row justify-content-between">
+      <button type="button" (click)="modalRef.hide(); formConfirm.reset();" class="btn btn-danger">fechar</button>
+      <button type="submit" class="btn btn-success float-right" [disabled]="!formConfirm.valid">Salvar Perfil</button>
+    </div>
+  </form>
+  </div>
+</ng-template>

@@ -16,9 +16,8 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginS.currentUser().then((user:Usuario)=>{
-      this.usuario = user
-      console.log(this.usuario)
+    this.loginS.currentUser().subscribe((rs:Usuario)=>{
+      this.usuario = rs
     })
   }
 
