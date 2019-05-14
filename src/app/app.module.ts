@@ -18,6 +18,7 @@ import {NgxMaskModule} from 'ngx-mask'
 import { HomeService } from './services/home.service';
 import { LoginService } from './services/login.service';
 import { AuthGuardService } from './services/authguard.service';
+import { RespostaService } from './services/resposta.service';
 
 //ngx-bootstrap
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -37,11 +38,11 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ResetComponent } from './acesso/reset/reset.component';
 import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
 import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
-import { RespostaService } from './services/resposta.service';
 import { ListaComponent } from './lista/lista.component';
 import { TabperfilComponent } from './admin/views/homeadmin/tabperfil/tabperfil.component';
 import { TabgostaComponent } from './admin/views/homeadmin/tabgosta/tabgosta.component';
 import { TabhabilidadeComponent } from './admin/views/homeadmin/tabhabilidade/tabhabilidade.component';
+import { TesteComponent } from './teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TabhabilidadeComponent } from './admin/views/homeadmin/tabhabilidade/ta
     ListaComponent,
     TabperfilComponent,
     TabgostaComponent,
-    TabhabilidadeComponent
+    TabhabilidadeComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,

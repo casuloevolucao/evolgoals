@@ -13,9 +13,10 @@ import { ResetComponent } from './acesso/reset/reset.component';
 import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
 import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
 import { ListaComponent } from './lista/lista.component';
+import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
-  {path: "", component: HomeComponent},
+  {path: "", component: TesteComponent},
   {path: "login", component: LoginComponent},
   {path: "cadastro", component: CadastroComponent},
   {path: "resetsenha", component: ResetComponent},
