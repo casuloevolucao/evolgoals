@@ -11,10 +11,11 @@ export class Usuario {
     dtCadastro:Date
     tipoUsuario:number
     uid:string
+    idade:number
     whatsapp:number
     twitter:string
     facebook:string
     instagram:string
     descricao:string
-    respondido:boolean
+    respondido:number
 }

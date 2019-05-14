@@ -5,6 +5,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Usuario } from '../models/usuario.model';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,17 +47,19 @@ export class LoginService {
     return this.afa.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((user)=>{
      this.af.collection('usuarios').doc(user.user.uid).set({
         uid: user.user.uid,
-        foto: "",
+        foto: null,
         email: usuario.email,
         nome: usuario.nome,
         tipoUsuario: 1,
-        whatsapp: "",
-        facebook: "",
-        instagram: "",
-        descricao: "",
-        respondido: false,
+        whatsapp: null,
+        facebook: null,
+        instagram: null,
+        descricao: null,
+        idade:null,
+        respondido: 0,
         dtCadastro: new Date(),
      })
+     this.router.navigate(["/login"])
    })
   }   
 
@@ -94,23 +97,23 @@ export class LoginService {
   }
 
   //pegar usuario logado
-  async currentUser(){
-    return new Promise((resolve, reject)=>{
+  currentUser(){
+    return  new Observable((observable)=>{
       this.afa.authState.subscribe(
         user=>{
-        this.af.collection('usuarios').doc(user.uid).valueChanges().subscribe((data)=>{
-          resolve(data)
+        this.af.collection('usuarios').doc(user.uid).valueChanges().subscribe((data:Usuario)=>{
+          observable.next(data) 
         })
-        error=>{
-          reject(error)
-        }
       })
     })
   }
 
   //metodo de logout
   async logout(){
-    return this.afa.auth.signOut()
+    return this.afa.auth.signOut().then(()=>{
+      localStorage.clear()
+      this.router.navigate(['/'])
+    })
   }
 
   //metodo que valida autenticação
@@ -135,4 +138,23 @@ export class LoginService {
     })
   }
 
+  //tradução dos erros de login
+  erroTratament(erro:firebase.FirebaseError):firebase.FirebaseError{
+    if( erro.code == "auth/email-already-in-use" ){
+      erro.message = "O endereço de e-mail já está sendo usado por outra conta."
+    }else if(erro.code == "auth/invalid-email"){
+      erro.message = "O endereço de e-mail está invalido"
+    }else if(erro.code == "auth/wrong-password"){
+      erro.message = "A senha é inválida ou o usuário é inválido."
+    }else if (erro.code == "auth/user-not-found"){
+      erro.message = "Não há registro do usuário. O usuário pode ter sido excluído."
+    }else if (erro.code == "auth/user-disabled"){
+      erro.message = "A conta do usuário foi desativada."
+    }else if (erro.code = "auth/user-token-expired"){
+      erro.message = "A credencial do usuário não é mais válida. O usuário deve entrar novamente."
+    }else if (erro.code = "auth/argument-error"){
+      erro.message = "reauthenticateWithPopup falhou: o primeiro argumento authProvider deve ser um provedor de Auth válido."
+    }
+    return erro
+  }
 }

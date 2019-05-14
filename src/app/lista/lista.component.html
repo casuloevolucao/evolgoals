@@ -1,0 +1,46 @@
+<div class="bg-admin">
+    <nav class="navbar navbar-expand-lg navbar-light bg-menu">
+       <a class="navbar-brand text-white" routerLink="/admin">
+          <i class="fa fa-arrow-left"></i>
+       </a>
+       <!-- Brand and toggle get grouped for better mobile display -->
+    </nav>
+    <div class="container">
+       <ul class="list">
+          <li *ngFor="let user of lista">
+             <div class="card bg-white shadow">
+                <div class="row">
+                   <div class="col-md-3">
+                      <img class="img-fluid list-user" [src]="user.foto != null ? user.foto :'./assets/imgs/user.png'">
+                      <p class="lead">Nome dele (a) {{user.nome}}</p>
+                      <p class="lead">Tem {{user.idade}} anos de idade</p>
+                   </div>
+                   <div class="col-md-9">
+                      <h5>
+                        {{user.descricao}}
+                      </h5>
+                      <p class="lead">Sua Redes Socias:</p>
+                      <ul class="social row justify-content-between">
+                         <li class="facebook">
+                            <a [href]="user.facebook"  target="_blank"><i class="fa fa-facebook-f fa-3x mr-2"></i></a>
+                         </li>
+                         <li class="instagram" >
+                            <a [href]="user.instagram" target="_blank"><i class="fa fa-instagram fa-3x mr-2"></i></a>
+                         </li>
+                         <li class="whatsapp">
+                            <i class="fa fa-whatsapp fa-3x mr-2"></i>
+                            <p class="tooltip-text">{{user.whatsapp | mask: '(00) 00000-0000'}}</p>
+                         </li>
+                         <li class="twitter">
+                            <a [href]="user.twitter" target="_blank"><i class="fa fa-twitter fa-3x mr-2"></i></a>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+          </li>
+       </ul>
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+ </div>

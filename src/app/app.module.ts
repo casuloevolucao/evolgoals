@@ -12,14 +12,18 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { ReactiveFormsModule } from "@angular/forms";
+import {NgxMaskModule} from 'ngx-mask'
 
 //Services
 import { HomeService } from './services/home.service';
 import { LoginService } from './services/login.service';
 import { AuthGuardService } from './services/authguard.service';
+import { RespostaService } from './services/resposta.service';
 
 //ngx-bootstrap
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 //Componet
 import { AppComponent } from './app.component';
@@ -32,6 +36,13 @@ import { SidemenuComponent } from './admin/sidemenu/sidemenu.component';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ResetComponent } from './acesso/reset/reset.component';
+import { HomeadminComponent } from './admin/views/homeadmin/homeadmin.component';
+import { EditaradminComponent } from './admin/views/editaradmin/editaradmin.component';
+import { ListaComponent } from './lista/lista.component';
+import { TabperfilComponent } from './admin/views/homeadmin/tabperfil/tabperfil.component';
+import { TabgostaComponent } from './admin/views/homeadmin/tabgosta/tabgosta.component';
+import { TabhabilidadeComponent } from './admin/views/homeadmin/tabhabilidade/tabhabilidade.component';
+import { TesteComponent } from './teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +55,14 @@ import { ResetComponent } from './acesso/reset/reset.component';
     SidemenuComponent,
     LoginComponent,
     CadastroComponent,
-    ResetComponent
+    ResetComponent,
+    HomeadminComponent,
+    EditaradminComponent,
+    ListaComponent,
+    TabperfilComponent,
+    TabgostaComponent,
+    TabhabilidadeComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
@@ -58,12 +76,16 @@ import { ResetComponent } from './acesso/reset/reset.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [
     HomeService,
     LoginService,
-    AuthGuardService
+    AuthGuardService,
+    RespostaService
   ],
   bootstrap: [AppComponent]
 })
