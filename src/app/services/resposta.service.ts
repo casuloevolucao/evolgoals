@@ -14,9 +14,6 @@ export class RespostaService {
 
   constructor(
     private af:AngularFirestore,
-    private afa:AngularFireAuth,
-    private afs:AngularFireStorage,
-    private router:Router
   ) { }
 
   getListUsers(current:Usuario){
@@ -24,8 +21,6 @@ export class RespostaService {
   }
 
   sendResposta(current:Usuario, respostas:Respostas){
-    console.log(current)
-    console.log(respostas)
     return new Observable(
       (observable)=>{
         this.af.collection("usuarios").doc(current.uid).update({
@@ -59,96 +54,106 @@ export class RespostaService {
     );
   }
 
-  async createListPares(){
-    let listaUsuario:Usuario[] = new Array<Usuario>()
-    await this.af.collection("usuarios", ref => ref.where('tipoUsuario','==', 1)).valueChanges().subscribe((listaUsuario:Usuario[])=>{
-    let contresposta = 0
-    let usuarioTemp:Usuario = new Usuario()    
-    let respostaTemp:Respostas = new Respostas()
-    let paresTemp:Usuario[] = new Array<Usuario>()
-    for(let i=0; i < listaUsuario.length; i++){
-      this.getRespostas(listaUsuario[i]).subscribe((rs:Respostas)=>{
-        respostaTemp = rs
-      })
-      usuarioTemp = listaUsuario[i]
-      if(paresTemp.length < 5){
-        listaUsuario.forEach((value)=>{
-          if(usuarioTemp.uid != value.uid){
-            this.getRespostas(value).subscribe((respOutro:Respostas)=>{
-              if(respostaTemp.res1 == respOutro.res1){
-                contresposta ++
-              }else if(respostaTemp.res1 == respOutro.res1){
-                contresposta ++
-              }
-              else if(respostaTemp.res2 == respOutro.res2){
-                contresposta ++
-              }
-              else if(respostaTemp.res3 == respOutro.res3){
-                contresposta ++
-              }
-              else if(respostaTemp.res4 == respOutro.res4){
-                contresposta ++
-              }
-              else if(respostaTemp.res5 == respOutro.res5){
-                contresposta ++
-              }
-              else if(respostaTemp.res6 == respOutro.res6){
-                contresposta ++
-              }
-              else if(respostaTemp.res7 == respOutro.res7){
-                contresposta ++
-              }
-              else if(respostaTemp.res8 == respOutro.res8){
-                contresposta ++
-              }
-              else if(respostaTemp.res9 == respOutro.res9){
-                contresposta ++
-              } else if(respostaTemp.res10 == respOutro.res10){
-                contresposta ++
+  createListPares(){
+    return new Observable((resolve)=>{
+      this.af.collection("usuarios", ref => ref.where('tipoUsuario','==', 1).where('respondido','==', 1)).valueChanges().subscribe((lista:Usuario[])=>{
+        let contadorResposta:number = 0
+        let conatadorPares:number = 0
+        let contadorParesFormados:number = 0
+        for (let i = 0; i < lista.length; i++) {
+          const usuarioTemp:Usuario = lista[i];
+          this.getRespostas(usuarioTemp).then((respostaTemp1:Respostas)=>{
+            const respostaUsuario:Respostas = respostaTemp1
+            lista.forEach((value)=>{
+              if(usuarioTemp.uid != value.uid){
+                this.getRespostas(value).then((respostaTemp2:Respostas)=>{
+                  const respostaOutra:Respostas = respostaTemp2
+                  if(respostaUsuario.res1 == respostaOutra.res1){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res2 == respostaOutra.res2){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res3 == respostaOutra.res3){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res4 == respostaOutra.res4){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res5 == respostaOutra.res5){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res6 == respostaOutra.res6){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res7 == respostaOutra.res7){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res8 == respostaOutra.res8){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res9 == respostaOutra.res9){
+                    contadorResposta++
+                  }
+                  if(respostaUsuario.res10 == respostaOutra.res10){
+                    contadorResposta++
+                  }
+                  if(contadorResposta > 5){
+                    if( conatadorPares < 6){
+                      this.addPares(value, usuarioTemp).then(()=>{
+                        conatadorPares++   
+                        contadorResposta = 0
+                        resolve.next(`O par para o usuário ${usuarioTemp.nome} foi ${value.nome}`)
+                      })
+                    }
+                  }else{
+                    this.notFoud(usuarioTemp).then(()=>{
+                      contadorResposta = 0
+                    })
+                  }
+                })
               }
             })
-            if(contresposta > 5){
-              paresTemp.push(value)
-            }else{
-              this.notFoud(usuarioTemp)
-            }
-          }
-        })
-      }else{
-        this.addPares(paresTemp, usuarioTemp)
-      }
-    }
+          })
+        }
+      })
     })
-    console.log(listaUsuario)
-    
   }
 
   getRespostas(usuario:Usuario){
-    return this.af.collection('respostas').doc(usuario.uid).valueChanges()
-  }
-
-  addPares(lista:Usuario[], current:Usuario){
-    lista.forEach((value)=>{
-      this.af.collection("usuarios").doc(current.uid).collection("pares").add({
-        uid: value.uid,
-        foto: value.foto,
-        email: value.email,
-        nome: value.nome,
-        whatsapp: value.whatsapp,
-        facebook: value.facebook,
-        instagram: value.instagram,
-        descricao: value.descricao,
-        idade: value.idade,
+    return new Promise((resolve, reject)=>{
+      return this.af.collection('respostas').doc(usuario.uid).valueChanges().subscribe((rs)=>{
+        resolve(rs)
       })
     })
-    this.af.collection("usuarios").doc(current.uid).update({
-      respondido:3
+  }
+
+  addPares(par:Usuario, current:Usuario){
+    return new Promise((resolve, reject)=>{
+      this.af.collection("usuarios").doc(current.uid).update({
+        respondido:3
+      }).then(()=>{
+        this.af.collection("usuarios").doc(current.uid).collection("pares").doc(par.uid).set({
+          uid: par.uid,
+          foto: par.foto,
+          email: par.email,
+          nome: par.nome,
+          whatsapp: par.whatsapp,
+          facebook: par.facebook,
+          instagram: par.instagram,
+          descricao: par.descricao,
+          idade: par.idade,
+        }).then(()=>{
+          resolve(par)
+        })
+      })
     })
   }
 
   notFoud(current:Usuario){
-    this.af.collection("usuarios").doc(current.uid).update({
+    return this.af.collection("usuarios").doc(current.uid).update({
       respondido:2
     })
   }
+
 }
