@@ -16,7 +16,7 @@ import { ListaComponent } from './lista/lista.component';
 import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
-  {path: "", component: TesteComponent},
+  {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent},
   {path: "cadastro", component: CadastroComponent},
   {path: "resetsenha", component: ResetComponent},

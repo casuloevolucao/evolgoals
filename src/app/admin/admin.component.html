@@ -4,8 +4,67 @@
     <app-sidemenu [usuario]="usuario"></app-sidemenu>
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      <div class="container-fluid xyz">
+      <div *ngIf="usuario.tipoUsuario == 1" class="container-fluid xyz">
         <router-outlet></router-outlet>
+      </div>
+      <div *ngIf="usuario.tipoUsuario == 0" class="container-fluid xyz">
+        <div class="row justify-content-center">
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-success p-2" style="border-radius: 5%;">
+              <div class="text-center text-white">
+                <h3>{{usersRegister.length}}</h3>
+                <p>Usuarios Registrados</p>
+              </div>
+              <div class="text-center text-white">
+                <i class="fa fa-power-off"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5 ml-5">
+          <button type="button" class="btn-primary mr-3" (click)="openModal(template)">Cadastrar Equipe</button>
+          <button type="button" class="btn btn-secondary" [disabled]="!send" (click)="disableSend()">Bloquear Envio de Respostas</button>
+        </div>
+        <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">
+              Cadastrar Equipe 
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="modal-body">
+              <div formArrayName="equipe">
+                <div *ngFor="let control of equipe.controls; let i = index" [formGroupName]="i">
+                  <label>{{i+1}}</label>
+                  <div class="form-group">
+                    <label>Nome</label>
+                    <input class="form-control" formControlName="nome" type="text">
+                    <label>Descrição</label>
+                    <textarea class="form-control" formControlName="descricao"></textarea>
+                    <label>foto</label>
+                    <input class="form-control" formControlName="foto" type="text">
+                    <label>Facebook</label>
+                    <input class="form-control" formControlName="facebook" type="text">
+                    <label>Instagram</label>
+                    <input class="form-control" formControlName="instagram" type="text">
+                    <label>Github</label>
+                    <input class="form-control" formControlName="github" type="text">
+                    <label>Linkedin</label>
+                    <input class="form-control" formControlName="linkedin" type="text">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modalRef.hide(); form.reset()">Fechar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!form.valid">Cadastrar</button>
+          </div>
+        </form>
+        </ng-template>
       </div>
     </div>
   </div>

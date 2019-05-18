@@ -33,6 +33,8 @@ export class HomeadminComponent implements OnInit {
   })
 
   lista:Usuario[]
+
+  send:boolean
   constructor(
     private loginS:LoginService
   ) { }
@@ -41,7 +43,9 @@ export class HomeadminComponent implements OnInit {
     this.loginS.currentUser().subscribe((user:Usuario)=>{
       this.usuario = user
     })
-    
+    this.loginS.getSendRespose().subscribe((rs:any)=>{
+      this.send = rs.send
+    })
   }
 
 }

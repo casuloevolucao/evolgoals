@@ -38,8 +38,8 @@
              <i class="fa fa-check fa-4x verde"></i>
           </div>
           <h4 class="mt-3 text-center">
-             Ei pivete agente achou 5 pessoas que agente acha que vai da certo....
-             mano e sua cara metade ta curioso clica ali pra ver :)
+            Ei pivete agente achou 5 pessoas que agente acha que tem mesmo interesse que você....
+            ta curioso clica ali pra ver :)
           </h4>
           <div class="row justify-content-end mr-1">
             <p class="lead user-list"> <a routerLink="/lista">Veja aqui... <i class="fa fa fa-user-secret fa-2x verde"></i></a></p>
@@ -50,7 +50,7 @@
  <!-- end - Card-->
 
 <!--tabs-->
-<div *ngIf="usuario.respondido == 0" class="form-custom p-5 bg-white shadow">
+<div *ngIf="usuario.respondido == 0 && send" class="form-custom p-5 bg-white shadow">
    <p>{{form.value | json}}</p>
    <tabset>
       <tab class="tab" heading="Perfil">
@@ -63,4 +63,17 @@
          <app-tabhabilidade [form]="form"></app-tabhabilidade>
       </tab>
    </tabset>
+</div>
+<div *ngIf="usuario.respondido == 0 && send == false" class="row justify-content-center">
+   <div class="col-md-6">
+      <div class="card bg-white shadow">
+         <div class="text-center">
+            <i class="fa fa-code fa-4x vermelho"></i>
+         </div>
+         <h4 class="mt-3 text-center">
+            Ops!!! Mano parece que você chegou tarde mano agente já começou a montar os grupos.... 
+            quem sabe no proximo Tec Day da Certo :)
+         </h4>
+      </div>
+   </div>
 </div>

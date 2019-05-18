@@ -1,5 +1,5 @@
  <!-- Sidebar -->
- <div id="sidebar-wrapper">
+ <div *ngIf="usuario.tipoUsuario == 1" id="sidebar-wrapper">
   <ul class="sidebar-nav nav flex-column" id="menu">
      <li>
         <img class="img-fluid user-img" [src]="usuario.foto != null ? usuario.foto :'./assets/imgs/user.png'">
@@ -21,6 +21,24 @@
   <p class="lead text-center text-white footer">Casulo Evolução &copy; 2019</p>
 </div>
 <!-- /#sidebar-wrapper -->
+
+<!-- Sidebar -->
+<div *ngIf="usuario.tipoUsuario == 0" id="sidebar-wrapper">
+   <ul class="sidebar-nav nav flex-column" id="menu">
+      <li>
+         <img class="img-fluid user-img" [src]="usuario.foto != null ? usuario.foto :'./assets/imgs/user.png'">
+         <p class="lead text-center text-white">{{usuario.nome}}</p>
+      </li>
+      <li class="nav-item active">
+         <a routerLink="/admin"><span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x "></i></span> Inicio</a>
+      </li>
+      <li class="nav-item">
+         <a (click)="logout()" style="cursor: pointer; color: #999999;"><span class="fa-stack fa-lg"><i class="fa fa-sign-out fa-stack-1x "></i></span>Sair</a>
+      </li>
+   </ul>
+   <p class="lead text-center text-white footer">Casulo Evolução &copy; 2019</p>
+ </div>
+ <!-- /#sidebar-wrapper -->
 
 <ng-template #termos>
    <div class="modal-header">
