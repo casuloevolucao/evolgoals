@@ -98,16 +98,16 @@ export class RespostaService {
                   }
                   if(contadorResposta > 5){
                     if( conatadorPares < 6){
-                      this.addPares(value, usuarioTemp).then(()=>{
+                      this.addPares(value, usuarioTemp).subscribe((rs)=>{
                         conatadorPares++   
                         contadorResposta = 0
                         resolve.next(`O par para o usuário ${usuarioTemp.nome} foi ${value.nome}`)
                       })
                     }
+                    contadorResposta = 0
                   }else{
-                    this.notFoud(usuarioTemp).then(()=>{
-                      contadorResposta = 0
-                    })
+                    this.notFoud(usuarioTemp)
+                    contadorResposta = 0
                   }
                 })
               }
@@ -127,7 +127,7 @@ export class RespostaService {
   }
 
   addPares(par:Usuario, current:Usuario){
-    return new Promise((resolve, reject)=>{
+    return new Observable((resolve)=>{
       this.af.collection("usuarios").doc(current.uid).update({
         respondido:3
       }).then(()=>{
@@ -142,7 +142,7 @@ export class RespostaService {
           descricao: par.descricao,
           idade: par.idade,
         }).then(()=>{
-          resolve(par)
+          resolve.next(par)
         })
       })
     })
