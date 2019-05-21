@@ -11,7 +11,7 @@ import { Respostas } from '../models/respostas.model';
   providedIn: 'root'
 })
 export class RespostaService {
-
+  temPar:Usuario[]
   constructor(
     private af:AngularFirestore,
   ) { }
@@ -98,11 +98,12 @@ export class RespostaService {
                   }
                   if(contadorResposta > 5){
                     if( conatadorPares < 6){
-                      this.addPares(value, usuarioTemp).subscribe((rs)=>{
-                        conatadorPares++   
-                        contadorResposta = 0
+                      this.addPares(value, usuarioTemp).then(()=>{
+                        console.log("entrou")
                         resolve.next(`O par para o usuário ${usuarioTemp.nome} foi ${value.nome}`)
                       })
+                      conatadorPares++   
+                      contadorResposta = 0
                     }
                     contadorResposta = 0
                   }else{
@@ -120,14 +121,22 @@ export class RespostaService {
 
   getRespostas(usuario:Usuario){
     return new Promise((resolve, reject)=>{
-      return this.af.collection('respostas').doc(usuario.uid).valueChanges().subscribe((rs)=>{
-        resolve(rs)
+      this.af.collection('usuarios').doc(usuario.uid).collection("pares").valueChanges().subscribe((rs:Usuario[])=>{
+        this.temPar = new Array<Usuario>()
+        this.temPar = rs
       })
+      if(this.temPar == null){
+        this.af.collection('respostas').doc(usuario.uid).valueChanges().subscribe((rs)=>{
+          resolve(rs)
+        })
+      }else{
+        resolve("tem par")
+      }
     })
   }
 
   addPares(par:Usuario, current:Usuario){
-    return new Observable((resolve)=>{
+    return new Promise((resolve, reject)=>{
       this.af.collection("usuarios").doc(current.uid).update({
         respondido:3
       }).then(()=>{
@@ -142,7 +151,7 @@ export class RespostaService {
           descricao: par.descricao,
           idade: par.idade,
         }).then(()=>{
-          resolve.next(par)
+          resolve(par)
         })
       })
     })

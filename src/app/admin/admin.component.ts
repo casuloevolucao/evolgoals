@@ -139,14 +139,15 @@ export class AdminComponent implements OnInit {
       confirmButtonText: 'Sim tenho certeza!',
       cancelButtonText: 'Não Espera mais um pouco!'
     }).then((result) => {
-      this.spinnerS.show()
       if (result.value) {
+        this.spinnerS.show()
         this.respostaS.createListPares().subscribe((rs:string)=>{
           this.spinnerS.hide()
           this.toastr.success(rs,"Encontrado",{
             timeOut:10000
           })
         })
+        
       // For more information about handling dismissals please visit
       // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
