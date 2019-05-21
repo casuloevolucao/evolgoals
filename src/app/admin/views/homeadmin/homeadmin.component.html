@@ -51,7 +51,7 @@
 
 <!--tabs-->
 <div *ngIf="usuario.respondido == 0 && send" class="form-custom p-5 bg-white shadow">
-   <p>{{form.value | json}}</p>
+   <!--<p>{{form.value | json}}</p>-->
    <tabset>
       <tab class="tab" heading="Perfil">
          <app-tabperfil [form]="form"></app-tabperfil>
@@ -59,7 +59,7 @@
       <tab heading="O que você gosta">
          <app-tabgosta [form]="form"></app-tabgosta>
       </tab>
-      <tab heading="Suas habilidades">
+      <tab heading="Sobre você">
          <app-tabhabilidade [form]="form"></app-tabhabilidade>
       </tab>
    </tabset>

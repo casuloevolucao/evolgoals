@@ -1,30 +1,45 @@
-<form [formGroup]= "form" (ngSubmit)="submit()">
+<form [formGroup]= "form" (ngSubmit)="submit()" class="p-2">
   <div class="form-group">
     <label style="color: black;">
         Qual o ritmo mais ama?
     </label>
     <select formControlName="res6" class="form-control">
-      <option>Selecione</option>
+      <option disabled value="">Selecione</option>
       <option *ngFor="let res of res6; let i = index" [value]="i" >{{res}}</option>
     </select>
+    <div *ngIf="form.get('res6').invalid && (form.get('res6').touched || form.get('res6').dirty)" class="alert alert-danger">
+      <div *ngIf="form.get('res6').hasError('required')">
+        O Campo e requirido
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <label style="color: black;">
         Como se definiria?
     </label>
     <select formControlName="res7" class="form-control">
-      <option>Selecione</option>
+      <option disabled value="">Selecione</option>
       <option *ngFor="let res of res7; let i = index" [value]="i" >{{res}}</option>
     </select>
+    <div *ngIf="form.get('res7').invalid && (form.get('res7').touched || form.get('res7').dirty)" class="alert alert-danger">
+      <div *ngIf="form.get('res7').hasError('required')">
+        O Campo e requirido
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <label style="color: black;">
         Sobre pets...
     </label>
     <select formControlName="res8" class="form-control">
-      <option>Selecione</option>
+      <option disabled value="">Selecione</option>
       <option *ngFor="let res of res8; let i = index" [value]="i" >{{res}}</option>
     </select>
+    <div *ngIf="form.get('res8').invalid && (form.get('res8').touched || form.get('res8').dirty)" class="alert alert-danger">
+      <div *ngIf="form.get('res8').hasError('required')">
+        O Campo e requirido
+      </div>
+    </div>
   </div>
   <div class="form-row justify-content-end">
     <button [disabled]="!form.valid" class="btn btn-primary">Enviar <i class="fa fa-send-o"></i></button>

@@ -109,7 +109,8 @@ export class AdminComponent implements OnInit {
       cancelButtonText: 'Não Espera mais um pouco!'
     }).then((result) => {
       if (result.value) {
-        this.loginS.closeSendResponse(this.usuario).then(()=>{
+        this.loginS.closeSendResponse(this.usuario).then((rs)=>{
+          console.log(rs)
           Swal.fire(
             'Desativado!',
             'O Formulário de Envio foi desativado com Sucesso',

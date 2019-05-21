@@ -1,4 +1,8 @@
 export class Respostas {
+    constructor(init?: Partial<Respostas>) {
+        Object.assign(this, init);
+    }
+
     res1:number
     res2:number
     res3:number
