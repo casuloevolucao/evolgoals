@@ -59,7 +59,6 @@ export class RespostaService {
       this.af.collection("usuarios", ref => ref.where('tipoUsuario','==', 1).where('respondido','==', 1)).valueChanges().subscribe((lista:Usuario[])=>{
         let contadorResposta:number = 0
         let conatadorPares:number = 0
-        let contadorParesFormados:number = 0
         for (let i = 0; i < lista.length; i++) {
           const usuarioTemp:Usuario = lista[i];
           this.getRespostas(usuarioTemp).then((respostaTemp1:Respostas)=>{

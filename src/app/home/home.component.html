@@ -1,0 +1,174 @@
+<div class="bg-home">
+<app-header></app-header>
+<div class="container">
+    <div class="row justify-content-between" id="home-content">
+    <div class="col-md-6">
+        <h4 class="text-white mt-5">
+        Mais um projeto Casulo sendo Contruido
+        </h4>
+        <p class="text-white lead">
+        Como todos sabem, o Casulo de Sistemas é formado por um grupo de alunos que possuem o 
+        objetivo de compartilhar conteúdo de informática. Além de procurar meios de fazer com 
+        que todos que se interessam pela área de informática, se inspirarem cada vez mais.        
+        </p>
+        <p class="text-white lead">
+        Sabemos que os sistemas promovem interações, e, porque não criar um para nossa faculdade?
+        Além de inspirar quem está fazendo, também temos a vantagem de participar de um clima de 
+        interação e, bem divertido. E, assim surgiu o EvolGoals.  
+        </p>
+        <p class="text-white lead">
+        Esperamos muito que gostem!  
+        </p>
+    </div>
+    <div class="col-md-4">
+        <img class="img-fluid img-center" src="./assets/imgs/smartphone.png">
+    </div>
+    </div>
+</div>
+</div>
+<div class="container">
+<section>
+    <div class="row mt-5">
+    <div class="col">
+        <h4 class="text-black">
+        <strong>A Faculdade</strong> o começo de tudo 
+        </h4>
+        <p class="text-black lead">
+        A faculdade é bem mais do que um ambiente de estudo, também tem a questão 
+        do network. Pode vim através de amizades, ou mesmo de joguinhos. Que tal 
+        participar do EvolGoals? Vem conhecer mais pessoas! Interagir, e fazer da 
+        faculdade um ambiente bem mais divertido!
+        </p>
+    </div>
+    <div class="col">
+        <img class="img-fluid" src="./assets/imgs/faculdade.jpg">
+    </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+        <img class="img-fluid" src="./assets/imgs/evolgoas.png">
+        </div>
+        <div class="col">
+        <h4 class="text-black">
+        <strong>EvolGoals</strong> o que é ?
+        </h4>
+        <p class="text-black lead">
+        EvolGoals é um sistema de quis simples e dinâmico, criado pelo grupo de 
+        estudos Casulo para promover mais interações entre os alunos da Faculdade 
+        Evolução e Fatene. Seja amizade ou relacionamento, o importante é se divertir!
+        </p>
+    </div>
+    </div>
+
+    <div class="row mt-5">
+    <div class="col">
+        <h4 class="text-black">
+        <strong>Nossa meta</strong> é ?
+        </h4>
+        <p class="text-black lead">
+        Imagina uma pessoa que tem gostos semelhantes aos seus? Tão divertida quanto 
+        você! Poderiam ser ótimos amigos, mas, infelizmente ainda não se conhecem... 
+        Para que deixar isso acontecer, vem participar do EvolGoals, pode ser 
+        interessante!
+        </p>
+    </div>
+    <div class="col">
+        <img class="img-fluid" src="./assets/imgs/meta.jpg">
+    </div>
+    </div>
+</section>
+
+<section class="mt-5">
+    <h1 class="heading text-center">
+    Nossa equipe de Casuleiros :)
+    </h1>
+    <div class="row mt-5" id="equipe">
+        <carousel *ngFor="let groupo of groupos">
+            <slide>
+                <div class="col-md-4" *ngFor="let eq of groupo.equipe">
+                    <img class="img-fluid rounded-circle img-center" src="./assets/imgs/logo.png">
+                    <p class="lead text-center mt-5">
+                    Casuleiro
+                    </p>
+                    <h6>
+                        It is a long established fact that a reader will be distracted by 
+                        the readable content of a page when looking at its layout. The 
+                        point of using Lorem Ipsum is that it has a more-or-less normal 
+                        distribution of letters, as opposed to using 'Content here
+                    </h6>
+                    <ul class="slider-rede text-center">
+                    <li class="facebook">
+                        <a><i class="fa fa-facebook fa-2x"></i></a>
+                    </li>
+                    <li class="instagram">
+                        <a><i class="fa fa-instagram fa-2x"></i></a>
+                    </li>
+                    <li class="github">
+                        <a><i class="fa fa-github fa-2x"></i></a>
+                    </li>
+                    <li class="linkdin">
+                        <a><i class="fa fa-linkedin fa-2x"></i></a>
+                    </li>
+                    </ul>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</section>
+</div>
+
+<section class="bg-section">
+<div class="row justify-content-center">
+    <button class="btn btn-primary">Como foi nosso semestre em 2019</button>
+</div>
+</section>
+
+<div class="container">
+<section>
+    <div class="row">
+    <div class="col">
+        <img class="img-fluid img-center" src="./assets/imgs/faculdade-evolucao.png">
+        <p class="lead">
+        Construir conhecimento com qualidade nas diversas áreas do saber, mediante 
+        ações de ensino, pesquisa e extensão, propiciando a formação e o aprimoramento 
+        de profissionais competentes e comprometidos com valores humanos.
+        </p>
+        <ul class="slider-rede" style="margin-left: -50px">
+            <li class="facebook">
+            <a target="_blank" href="https://www.facebook.com/Faculdadeevolucao/?ref=br_rs"><i class="fa fa-facebook fa-2x"></i></a>
+            </li>
+            <li class="instagram">
+            <a target="_blank" href="https://www.instagram.com/faculdade.evolucao/"><i class="fa fa-instagram fa-2x"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+        <img class="img-center" src="./assets/imgs/logo-casulo.png">
+        <p class="lead mt-3">
+            O Casulo é uma iniciativa da Faculdade Evolução acompanhando as demandas dos 
+            seus alunos na ampliação de seus horizontes, tanto do ponto de vista profissional 
+            como acadêmico. Tem como objetivo unir grupos de alunos com interesses em assuntos 
+            comuns para um maior desenvolvimento.
+        </p>
+        <ul class="slider-rede" style="margin-left: -50px">
+            <li class="facebook">
+                <a target="_blank" href="https://pt-br.facebook.com/casuloevolucao/"><i class="fa fa-facebook fa-2x"></i></a>
+            </li>
+            <li class="instagram">
+                <a target="_blank" href="https://www.instagram.com/casulo.evolucao/"><i class="fa fa-instagram fa-2x"></i></a>
+            </li>
+            <li class="github">
+                <a target="_blank" href="https://github.com/casuloevolucao"><i class="fa fa-github fa-2x"></i></a>
+            </li>
+            <li class="youtube">
+                <a target="_blank" href="https://www.youtube.com/channel/UCp9gn-aRUUC7riTRUIgi2Ow"><i class="fa fa-youtube-play fa-2x"></i></a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</section>
+    <div class="divider">
+    </div>
+    <app-footer></app-footer>
+</div>

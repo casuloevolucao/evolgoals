@@ -1,3 +1,47 @@
-<p>
-  tabgosta works!
-</p>
+<form [formGroup]="form">
+ <div class="form-group">
+   <label style="color: black;">
+     Queremos te conhecer um pouco melhor, então, das alternativas abaixo, qual prefere:
+    </label>
+    <select formControlName="res1" class="form-control">
+      <option>Selecione</option>
+      <option *ngFor="let res of res1; let i = index" [value]="i" >{{res}}</option>
+    </select>
+ </div>
+ <div class="form-group">
+    <label style="color: black;">
+        Todos nós temos uma área que sempre admiramos ou sentimos mais afinidade, assinale a alternativa que mais se identifica
+     </label>
+     <select formControlName="res2" class="form-control">
+       <option>Selecione</option>
+       <option *ngFor="let res of res2; let i = index" [value]="i" >{{res}}</option>
+     </select>
+  </div>
+  <div class="form-group">
+    <label style="color: black;">
+        Sobre filmes, me fala o que ama? Eu comédia romântica com certeza! E, você?
+      </label>
+      <select formControlName="res3" class="form-control">
+        <option>Selecione</option>
+        <option *ngFor="let res of res3; let i = index" [value]="i" >{{res}}</option>
+      </select>
+  </div>
+  <div class="form-group">
+    <label style="color: black;">
+        Se fosse viajar, para onde iria?
+      </label>
+      <select formControlName="res4" class="form-control">
+        <option>Selecione</option>
+        <option *ngFor="let res of res4; let i = index" [value]="i" >{{res}}</option>
+      </select>
+  </div>
+  <div class="form-group">
+      <label style="color: black;">
+          Todos nós amamos comida! A minha favorita é pizza, e a sua?
+        </label>
+        <select formControlName="res5" class="form-control">
+          <option>Selecione</option>
+          <option *ngFor="let res of res5; let i = index" [value]="i" >{{res}}</option>
+        </select>
+    </div>
+</form>
