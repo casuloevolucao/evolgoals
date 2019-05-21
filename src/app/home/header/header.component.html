@@ -1,3 +1,8 @@
-<p>
-  header works!
-</p>
+<header class="top-header" (scroll)="onWindosScroll($event)">
+  <div class="container">
+    <div class="row justify-content-between">
+      <p class="text-white lead"><img src="./assets/imgs/logo.png">Casulo Evolução</p>
+      <a routerLink="/login" class="btn btn-primary" role="button">Entrar</a>
+    </div>
+  </div>
+</header>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/usuario.model';
 import { Respostas } from '../models/respostas.model';
 import { RespostaService } from '../services/resposta.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-teste',
@@ -11,7 +12,8 @@ import { RespostaService } from '../services/resposta.service';
 export class TesteComponent implements OnInit {
 
   constructor(
-    private respostaS:RespostaService
+    private respostaS:RespostaService,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit() {
@@ -19,9 +21,13 @@ export class TesteComponent implements OnInit {
 
   click(){
     this.respostaS.createListPares()
-    /*for(let i = 0; i < 2; i++){
+    .subscribe((rs:string)=>{
+      this.toastr.success(rs)
+      console.log(rs)
+    })
+    /*for(let i = 0; i < 1; i++){
       let usuario:Usuario = new Usuario()
-      usuario.uid = "5y4tSU8M4yc15F714HBMdkgE5pH3"
+      usuario.uid = "vtW1ZS6i6TRInNJ5SFwzr5ehxqu1"
       usuario.facebook = "teste"
       usuario.instagram = "teste"
       usuario.twitter = "teste"

@@ -19,20 +19,25 @@ export class HomeadminComponent implements OnInit {
     facebook: new FormControl(null),
     instagram: new FormControl(null),
     descricao: new FormControl(null),
-    idade: new FormControl(null),
-    res1: new FormControl(null),
-    res2: new FormControl(null),
-    res3: new FormControl(null),
-    res4: new FormControl(null),
-    res5: new FormControl(null),
-    res6: new FormControl(null),
-    res7: new FormControl(null),
-    res8: new FormControl(null),
-    res9: new FormControl(null),
-    res10: new FormControl(null),
+    idade: new FormControl(null, [Validators.required])
+  })
+
+  @Input() resposta:FormGroup = new FormGroup({
+    res1: new FormControl(null, [Validators.required]),
+    res2: new FormControl(null, [Validators.required]),
+    res3: new FormControl(null, [Validators.required]),
+    res4: new FormControl(null, [Validators.required]),
+    res5: new FormControl(null, [Validators.required]),
+    res6: new FormControl(null, [Validators.required]),
+    res7: new FormControl(null, [Validators.required]),
+    res8: new FormControl(null, [Validators.required]),
+    res9: new FormControl(null, [Validators.required]),
+    res10: new FormControl(null, [Validators.required]),
   })
 
   lista:Usuario[]
+
+  send:boolean
   constructor(
     private loginS:LoginService
   ) { }
@@ -41,7 +46,9 @@ export class HomeadminComponent implements OnInit {
     this.loginS.currentUser().subscribe((user:Usuario)=>{
       this.usuario = user
     })
-    
+    this.loginS.getSendRespose().subscribe((rs:any)=>{
+      this.send = rs.send
+    })
   }
 
 }

@@ -6,6 +6,7 @@ import { Usuario } from '../models/usuario.model';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Observable, observable } from 'rxjs';
+import { Groupo } from '../models/equipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -157,4 +158,22 @@ export class LoginService {
     }
     return erro
   }
+
+  //pegar todos os clientes registrados
+  getUsersResgistres(){
+    return this.af.collection("usuarios", ref => ref.where('tipoUsuario', '==', 1)).valueChanges()
+  }
+
+  //desabilida o envio de respostas
+  closeSendResponse(admin:Usuario){
+    return this.af.collection("config").doc(admin.uid).update({
+      send:false
+    })
+  }
+
+  //pegar configuração de envio das respostas
+  getSendRespose(){
+    return this.af.collection("config").doc('125NB67KYuM08BNu31wGa1kTemX2').valueChanges()
+  }
+
 }
