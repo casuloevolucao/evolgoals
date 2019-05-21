@@ -185,7 +185,10 @@
     display: inline-block;
     margin-right: 20px;
     margin-left: -20px;
-    color: #1d191985;
+    
+ }
+ .social li a{
+   color: #1d191985;
  }
  .whatsapp i:hover{
     color: #105c10;

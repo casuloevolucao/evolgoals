@@ -12,4 +12,14 @@ export class TopomenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  menu(){
+    if (window.innerWidth < 756) {
+      let element = document.querySelector("#wrapper")
+      element.classList.toggle("toggled")
+    }else{
+      let element = document.querySelector("#wrapper")
+      element.classList.toggle("toggled-2")
+    }
+  }
+
 }

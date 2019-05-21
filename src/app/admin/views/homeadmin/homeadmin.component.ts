@@ -19,7 +19,10 @@ export class HomeadminComponent implements OnInit {
     facebook: new FormControl(null),
     instagram: new FormControl(null),
     descricao: new FormControl(null),
-    idade: new FormControl(null, [Validators.required]),
+    idade: new FormControl(null, [Validators.required])
+  })
+
+  @Input() resposta:FormGroup = new FormGroup({
     res1: new FormControl(null, [Validators.required]),
     res2: new FormControl(null, [Validators.required]),
     res3: new FormControl(null, [Validators.required]),

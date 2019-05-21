@@ -6,3 +6,5 @@ export const resposta5 = ["Sou mais light, não curto muito comida gordurosa, me
 export const resposta6 = ["POP/ Eletrônica","Rock","Funk","Depende do meu estado de espírito"]
 export const resposta7 = ["Introvertida, mas, com os verdadeiros sou super de boas","Extrovertida, por aonde chego é difícil não falar com uma pessoa pelo menos","Sou normal rs sei dos meus momentos para me divertir e, também para causar","Tudo depende do meu estado de espírto, cada um tem de mim o que merece"]
 export const resposta8 = ["Amo dogneos, me dá um por favor?","Você já viu como os olhos dos gatinhos são lindos!","Gatinhos, dogneos, coelhinhos, um mais fofim que o outro!!", "Respeito quem tem, mas, não me vejo criando um"]
+export const resposta9 = ["Prefiro não responder","Eu amo, sei que vou sentir falta quando sair","Tô contando cada segundo, antes que isso aqui vire uma tragédiaaaaa","Sabe o meu diploma? Foco né!"]
+export const resposta10 = ["Com certeza, Futebol!","Vôlei né querido","Até parece que não é basquete","Amo as da categoria olímpica"]

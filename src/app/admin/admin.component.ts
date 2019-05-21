@@ -8,6 +8,7 @@ import { Groupo } from '../models/equipe.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../services/home.service';
+import { RespostaService } from '../services/resposta.service';
 
 @Component({
   selector: 'app-admin',
@@ -65,7 +66,8 @@ export class AdminComponent implements OnInit {
     private homeS:HomeService,
     private modalService: BsModalService,
     private spinnerS:NgxSpinnerService,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private respostaS:RespostaService,
   ) { }
 
   ngOnInit() {
@@ -110,7 +112,6 @@ export class AdminComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.loginS.closeSendResponse(this.usuario).then((rs)=>{
-          console.log(rs)
           Swal.fire(
             'Desativado!',
             'O Formulário de Envio foi desativado com Sucesso',
@@ -127,6 +128,36 @@ export class AdminComponent implements OnInit {
         )
       }
     })
+  } 
+
+  execute(){
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Admin você estara executando o programa de pares',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim tenho certeza!',
+      cancelButtonText: 'Não Espera mais um pouco!'
+    }).then((result) => {
+      this.spinnerS.show()
+      if (result.value) {
+        this.respostaS.createListPares().subscribe((rs:string)=>{
+          this.spinnerS.hide()
+          this.toastr.success(rs,"Encontrado",{
+            timeOut:10000
+          })
+        })
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'Eita Quase :)',
+          'error'
+        )
+      }
+    })
+    
   }
 
 }

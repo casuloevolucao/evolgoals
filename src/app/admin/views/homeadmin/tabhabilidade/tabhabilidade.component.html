@@ -1,4 +1,4 @@
-<form [formGroup]= "form" (ngSubmit)="submit()" class="p-2">
+<form [formGroup]= "resposta" (ngSubmit)="submit()" class="p-2">
   <div class="form-group">
     <label style="color: black;">
         Qual o ritmo mais ama?
@@ -7,8 +7,8 @@
       <option disabled value="">Selecione</option>
       <option *ngFor="let res of res6; let i = index" [value]="i" >{{res}}</option>
     </select>
-    <div *ngIf="form.get('res6').invalid && (form.get('res6').touched || form.get('res6').dirty)" class="alert alert-danger">
-      <div *ngIf="form.get('res6').hasError('required')">
+    <div *ngIf="resposta.get('res6').invalid && (resposta.get('res6').touched || resposta.get('res6').dirty)" class="alert alert-danger">
+      <div *ngIf="resposta.get('res6').hasError('required')">
         O Campo e requirido
       </div>
     </div>
@@ -21,8 +21,8 @@
       <option disabled value="">Selecione</option>
       <option *ngFor="let res of res7; let i = index" [value]="i" >{{res}}</option>
     </select>
-    <div *ngIf="form.get('res7').invalid && (form.get('res7').touched || form.get('res7').dirty)" class="alert alert-danger">
-      <div *ngIf="form.get('res7').hasError('required')">
+    <div *ngIf="resposta.get('res7').invalid && (resposta.get('res7').touched || resposta.get('res7').dirty)" class="alert alert-danger">
+      <div *ngIf="resposta.get('res7').hasError('required')">
         O Campo e requirido
       </div>
     </div>
@@ -35,13 +35,41 @@
       <option disabled value="">Selecione</option>
       <option *ngFor="let res of res8; let i = index" [value]="i" >{{res}}</option>
     </select>
-    <div *ngIf="form.get('res8').invalid && (form.get('res8').touched || form.get('res8').dirty)" class="alert alert-danger">
-      <div *ngIf="form.get('res8').hasError('required')">
+    <div *ngIf="resposta.get('res8').invalid && (resposta.get('res8').touched || resposta.get('res8').dirty)" class="alert alert-danger">
+      <div *ngIf="resposta.get('res8').hasError('required')">
         O Campo e requirido
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <label style="color: black;">
+        Já estamos quase acabando, então, me diz, o que tem achado da faculdade?
+    </label>
+    <select formControlName="res9" class="form-control">
+      <option disabled value="">Selecione</option>
+      <option *ngFor="let res of res9; let i = index" [value]="i" >{{res}}</option>
+    </select>
+    <div *ngIf="resposta.get('res9').invalid && (resposta.get('res9').touched || resposta.get('res9').dirty)" class="alert alert-danger">
+      <div *ngIf="resposta.get('res9').hasError('required')">
+        O Campo e requirido
+      </div>
+    </div>
+  </div>
+    <div class="form-group">
+      <label style="color: black;">
+        Só para finalizar, sabemos que nem todo mundo gosta de jogar (cansei só de pensar), mas, tem sempre um esporte que a gente admira. E aí? Qual deles te conquista?
+      </label>
+      <select formControlName="res10" class="form-control">
+        <option disabled value="">Selecione</option>
+        <option *ngFor="let res of res10; let i = index" [value]="i" >{{res}}</option>
+      </select>
+      <div *ngIf="resposta.get('res10').invalid && (resposta.get('res10').touched || resposta.get('res10').dirty)" class="alert alert-danger">
+        <div *ngIf="resposta.get('res10').hasError('required')">
+          O Campo e requirido
+        </div>
+      </div>
+    </div>
   <div class="form-row justify-content-end">
-    <button [disabled]="!form.valid" class="btn btn-primary">Enviar <i class="fa fa-send-o"></i></button>
+    <button [disabled]="!resposta.valid" class="btn btn-primary">Enviar <i class="fa fa-send-o"></i></button>
   </div>   
 </form>
